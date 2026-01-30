@@ -40,27 +40,19 @@ const PROMPT_TEMPLATE = `# 🩺 ระบบจำลองภาพศัลย
 
 export const uploadImage = async (file) => {
     const formData = new FormData();
-    formData.append('file', file);
+    formData.append('image', file);
 
-    const response = await fetch('https://tmpfiles.org/api/v1/upload', {
+    const response = await fetch('https://api.imgbb.com/1/upload?key=095723bb4643c07ff57fcb4c1ac63ffb', {
         method: 'POST',
         body: formData,
     });
 
     const data = await response.json();
-    if (data.status !== 'success') {
-        throw new Error('Upload failed');
+    if (!data.success) {
+        throw new Error('Upload failed: ' + (data.error?.message || 'Unknown error'));
     }
 
-    // Convert to direct URL if needed (tmpfiles.org usually requires /dl/)
-    // Standard return: https://tmpfiles.org/123/name.jpg
-    // Direct download: https://tmpfiles.org/dl/123/name.jpg
-    // We will try using the direct DL format to be safe for AI processing
-    let url = data.data.url;
-    if (url.includes('tmpfiles.org/')) {
-        url = url.replace('tmpfiles.org/', 'tmpfiles.org/dl/');
-    }
-    return url;
+    return data.data.url;
 };
 
 export const generateImage = async (imageUrl, selectedProcedures, details) => {
