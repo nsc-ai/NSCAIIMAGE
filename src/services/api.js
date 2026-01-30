@@ -1,8 +1,7 @@
-const API_KEY = import.meta.env.VITE_API_KEY;
+const API_KEY = "ec878035b47aa1a6dd3b9d56be185de6";
 
-if (!API_KEY) {
-    console.error("⚠️ VITE_API_KEY is missing! application will not function correctly.");
-}
+// Note: Hardcoding API Key as per user request for easier deployment.
+// In a production environment with a backend, this should be an environment variable.
 const PROMPT_TEMPLATE = `# 🩺 ระบบจำลองภาพศัลยกรรมตามใบสั่งแพทย์ (Strict Clinical Aesthetic Simulation System)
 
 **บทบาทของ AI (Role):**
