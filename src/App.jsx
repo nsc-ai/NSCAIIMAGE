@@ -8,9 +8,9 @@ import { uploadImage, generateImage, pollTaskResult } from './services/api';
 import { Sparkles } from 'lucide-react';
 
 const DEFAULT_LEVEL_PROMPTS = {
-  level1: 'Natural improvement, slight refinement, preserving original character.',
-  level2: 'Defined structure, clearer bridge, noticeable improvement.',
-  level3: 'High bridge, sharp tip, dramatic aesthetic change, celebrity style.'
+  level1: '',
+  level2: '',
+  level3: ''
 };
 
 const LEVEL_CONFIG = [
