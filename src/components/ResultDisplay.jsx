@@ -27,46 +27,49 @@ const ResultDisplay = ({ status, results, error, onReset, levels }) => {
 
             {status === 'success' && results && (
                 <div className="space-y-6 md:space-y-8">
-                    {levels.map((level) => (
-                        <div key={level.id} className="space-y-2 md:space-y-3">
-                            <h4 className="text-base md:text-lg font-semibold text-indigo-300 border-l-4 border-indigo-500 pl-3">
-                                {level.name}
-                            </h4>
-                            <div className="grid grid-cols-2 gap-2 md:gap-4">
-                                {/* Front View */}
-                                <div className="space-y-2">
-                                    <span className="text-xs text-slate-500 uppercase tracking-wider">Front View</span>
-                                    <div className="rounded-xl overflow-hidden border border-white/10 bg-black/20 aspect-[3/4]">
-                                        {results[level.id]?.front ? (
-                                            <img
-                                                src={results[level.id].front}
-                                                alt={`${level.name} Front`}
-                                                className="w-full h-full object-cover"
-                                            />
-                                        ) : (
-                                            <div className="w-full h-full flex items-center justify-center text-slate-600">No Image</div>
-                                        )}
+                    {levels.map((level) => {
+                        const levelResult = results?.[level.id]; // Safe access
+                        return (
+                            <div key={level.id} className="space-y-2 md:space-y-3">
+                                <h4 className="text-base md:text-lg font-semibold text-indigo-300 border-l-4 border-indigo-500 pl-3">
+                                    {level.name}
+                                </h4>
+                                <div className="grid grid-cols-2 gap-2 md:gap-4">
+                                    {/* Front View */}
+                                    <div className="space-y-2">
+                                        <span className="text-xs text-slate-500 uppercase tracking-wider">Front View</span>
+                                        <div className="rounded-xl overflow-hidden border border-white/10 bg-black/20 aspect-[3/4]">
+                                            {levelResult?.front ? (
+                                                <img
+                                                    src={levelResult.front}
+                                                    alt={`${level.name} Front`}
+                                                    className="w-full h-full object-cover"
+                                                />
+                                            ) : (
+                                                <div className="w-full h-full flex items-center justify-center text-slate-600">No Image</div>
+                                            )}
+                                        </div>
                                     </div>
-                                </div>
 
-                                {/* Side View */}
-                                <div className="space-y-2">
-                                    <span className="text-xs text-slate-500 uppercase tracking-wider">Side View</span>
-                                    <div className="rounded-xl overflow-hidden border border-white/10 bg-black/20 aspect-[3/4]">
-                                        {results[level.id]?.side ? (
-                                            <img
-                                                src={results[level.id].side}
-                                                alt={`${level.name} Side`}
-                                                className="w-full h-full object-cover"
-                                            />
-                                        ) : (
-                                            <div className="w-full h-full flex items-center justify-center text-slate-600">No Image</div>
-                                        )}
+                                    {/* Side View */}
+                                    <div className="space-y-2">
+                                        <span className="text-xs text-slate-500 uppercase tracking-wider">Side View</span>
+                                        <div className="rounded-xl overflow-hidden border border-white/10 bg-black/20 aspect-[3/4]">
+                                            {levelResult?.side ? (
+                                                <img
+                                                    src={levelResult.side}
+                                                    alt={`${level.name} Side`}
+                                                    className="w-full h-full object-cover"
+                                                />
+                                            ) : (
+                                                <div className="w-full h-full flex items-center justify-center text-slate-600">No Image</div>
+                                            )}
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    ))}
+                        )
+                    })}
 
                     <div className="flex flex-col sm:flex-row gap-3 pt-6 border-t border-white/5">
                         <button

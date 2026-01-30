@@ -1,4 +1,8 @@
 const API_KEY = import.meta.env.VITE_API_KEY;
+
+if (!API_KEY) {
+    console.error("⚠️ VITE_API_KEY is missing! application will not function correctly.");
+}
 const PROMPT_TEMPLATE = `# 🩺 ระบบจำลองภาพศัลยกรรมตามใบสั่งแพทย์ (Strict Clinical Aesthetic Simulation System)
 
 **บทบาทของ AI (Role):**
